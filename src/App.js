@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import './UserInput/UserInput';
+import './UserOutput/UserOutput';
+import UserInput from './UserInput/UserInput';
+import UserOutput from './UserOutput/UserOutput';
 
-function App() {
+
+class App extends Component {
+
+  //this is a state. pre-defiend.  we can use setState to merge(over-write) this property
+  state = {
+    username :'superMax'
+  }
+
+  usernameHandler = (event) => {
+    this.setState({username : event.target.value})         // built-in function  to set the state.
+  }
+
+
+  render() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <UserInput changed={this.usernameHandler}
+        currentName={this.state.username}/>
+      <UserOutput userName= {this.state.username}/>
+      <UserOutput userName= {this.state.username}/>
+      <UserOutput userName="Steven"/>  
     </div>
   );
+}
 }
 
 export default App;
